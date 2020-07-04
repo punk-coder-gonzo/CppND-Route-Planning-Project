@@ -90,6 +90,16 @@ TEST_F(RoutePlannerTest, TestAddNeighbors) {
     }
 }
 
+// test NextNode
+TEST_F(RoutePlannerTest, TestNextNode){
+    route_planner.AddNeighbors(start_node);
+    
+    float lowest_f_value = 1.137580156;
+    RouteModel::Node next_node = *route_planner.NextNode();
+    float actual_f_value = next_node.g_value + next_node.h_value;
+    EXPECT_FLOAT_EQ(actual_f_value, lowest_f_value);
+
+}
 
 // Test the ConstructFinalPath method.
 TEST_F(RoutePlannerTest, TestConstructFinalPath) {
