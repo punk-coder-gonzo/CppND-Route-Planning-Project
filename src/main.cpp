@@ -43,7 +43,7 @@ static void print_usage(std::string progname)
 int main(int argc, const char **argv)
 {    
     float start_x = 10, start_y = 10, end_x = 90, end_y = 90;
-    std::string osm_data_file = "/home/witter/work/udacity-cpp/CppND-Route-Planning-Project/map.osm"; // default
+    std::string osm_data_file = "../map.osm"; // default
 
     for (int i = 1; i < argc; ++i)
     {
