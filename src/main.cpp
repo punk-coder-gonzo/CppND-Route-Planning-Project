@@ -42,8 +42,9 @@ static void print_usage(std::string progname)
 
 int main(int argc, const char **argv)
 {    
-    float start_x = 10, start_y = 10, end_x = 90, end_y = 90;
-    std::string osm_data_file = "../map.osm"; // default
+    float start_x = 10, start_y = 10, end_x = 90, end_y = 90; //defaults
+    std::string osm_data_file = "../map.osm"; // defaults
+    bool found_route_cmd_option = false;
 
     for (int i = 1; i < argc; ++i)
     {
@@ -67,6 +68,7 @@ int main(int argc, const char **argv)
 
         if ((arg == "-r") || (arg == "--route"))
         {
+            found_route_cmd_option = true;
             if ((i + 4) < argc)
             {
                 start_x = atof(argv[++i]);
@@ -79,7 +81,15 @@ int main(int argc, const char **argv)
                 std::cerr << "-r,--route option requires four arguments." << std::endl;
                 return 1;
             }
+            
         }
+    }
+
+    if (!found_route_cmd_option){
+        std::cout << "start_x?: "; std::cin >> start_x;
+        std::cout << "start_y?: "; std::cin >> start_y;
+        std::cout << "end_x?: "; std::cin >> end_x;
+        std::cout << "end_y?: "; std::cin >> end_y;
     }
 
     std::vector<std::byte> osm_data;
